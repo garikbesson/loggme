@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import thunk from 'redux-thunk';
+
 import reducers from './reducers';
 import {createLogger} from 'redux-logger';
 import LogMe_App from './app';
@@ -12,7 +14,7 @@ const logger = createLogger();
 
 const store = createStore(
     reducers,
-    applyMiddleware(logger)
+    applyMiddleware(thunk, logger)
 );
 
 window.logme_app = new LogMe_App(store);
